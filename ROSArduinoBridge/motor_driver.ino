@@ -86,6 +86,24 @@
     setMotorSpeed(LEFT, leftSpeed);
     setMotorSpeed(RIGHT, rightSpeed);
   }
+#elif defined MDD3A
+  #include "CytronMotorDriver.h"
+  CytronMD motor1(PWM_PWM, LEFT_MOTOR_FORWARD, LEFT_MOTOR_BACKWARD);
+  CytronMD motor2(PWM_PWM, RIGHT_MOTOR_FORWARD, RIGHT_MOTOR_BACKWARD);
+
+  void initMotorController() {
+
+  }
+
+  void setMotorSpeed(int i, int spd) {
+    if (i == LEFT) motor1.setSpeed(spd);
+    else motor2.setSpeed(spd);
+  }
+
+  void setMotorSpeeds(int leftSpeed, int rightSpeed) {
+    motor1.setSpeed(leftSpeed);
+    motor2.setSpeed(rightSpeed);
+  }
 #else
   #error A motor driver must be selected!
 #endif
